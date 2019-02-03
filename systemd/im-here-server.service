@@ -1,0 +1,15 @@
+[Unit]
+Description=Log IP addresses of other computers
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+# Replace with your username
+User=USER
+# Replace with path to server.py and path to python executable if necessary
+ExecStart=/usr/bin/python3 /path/to/server.py
+
+[Install]
+WantedBy=multi-user.target

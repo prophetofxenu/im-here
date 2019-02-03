@@ -3,7 +3,6 @@ import datetime as dt
 import os
 
 clients_folder = "./clients/"
-server_address = "127.0.0.1"
 port = 8888
 
 async def handle_ping(reader, writer):
@@ -25,7 +24,7 @@ if __name__ == "__main__":
         os.mkdir(clients_folder)
 
     loop = asyncio.get_event_loop()
-    coroutine = asyncio.start_server(handle_ping, server_address, port, loop=loop)
+    coroutine = asyncio.start_server(handle_ping, port=port, loop=loop)
     server = loop.run_until_complete(coroutine)
     print("Started")
 

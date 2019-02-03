@@ -1,0 +1,13 @@
+[Unit]
+Description=Ping im-here server
+After=network.target
+
+[Service]
+Type=oneshot
+# Replace with your username
+User=USER
+# Replace with path to client.py and path to the python executable if necessary
+ExecStart=/usr/bin/python3 /path/to/client.py
+
+[Install]
+WantedBy=multi-user.target

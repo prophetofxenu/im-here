@@ -15,3 +15,5 @@ I have a VPS at home that I need to connect to, but my home internet connection 
 3. Set the location where client connections are logged (line 5). Make sure you have permission to write in this location. The server program will make the last folder if it doesn't exist; it doesn't need to exist before running.
 4. Run the server program. The server runs indefinitely. You may want to either run it as a service or for a simpler but less efficient solution, leave it running in tmux or screen.
 5. Schedule the client program to be run periodically. This can be done through cron or another scheduling program.
+
+If you're using systemd, you can use some of the prewritten service files. im-here-client.timer runs the client program every five minutes.
