@@ -3,7 +3,7 @@ import datetime as dt
 import os
 
 # this list should contain a list of hostnames that the server should accept connections from separated by newlines
-hostnames_path = "./acceptabe_hosts.txt" 
+hostnames_path = "./acceptable_hosts.txt" 
 # where IPs will be stored in txt files
 clients_folder = "./clients/"
 port = 8888
@@ -15,7 +15,7 @@ async def handle_ping(reader, writer):
 
     if client_hostname in hosts:
         with open(clients_folder + client_hostname + ".txt", "w") as f:
-            f.write("%s: %s" %(client_hostname, client_address[0]))
+            f.write("%s: %s\n" %(client_hostname, client_address[0]))
             f.write("Pinged at " + dt.datetime(2000, 1, 1).now().strftime("%m/%d/%Y %H:%M:%S"))
 
         message = "Received: %s @ %s" %(client_hostname, client_address[0])
