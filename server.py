@@ -16,7 +16,7 @@ async def handle_ping(reader, writer):
     if client_hostname in hosts:
         with open(clients_folder + client_hostname + ".txt", "w") as f:
             f.write("%s: %s\n" %(client_hostname, client_address[0]))
-            f.write("Pinged at " + dt.datetime(2000, 1, 1).now().strftime("%m/%d/%Y %H:%M:%S"))
+            f.write("Pinged at " + dt.datetime(2000, 1, 1).now().strftime("%m/%d/%Y %H:%M:%S") + "\n")
 
         message = "Received: %s @ %s" %(client_hostname, client_address[0])
         writer.write(message.encode())
