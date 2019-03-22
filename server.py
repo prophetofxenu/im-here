@@ -30,7 +30,8 @@ if __name__ == "__main__":
         exit(1)
 
     with open(hostnames_path, "r") as f:
-        hosts = f.readlines()
+        hosts = list(map(lambda host: host.replace('\n', ''), f.readlines())) # get rid of newline characters
+        hosts = list(filter(lambda host: host != '', hosts)) # strip empty lines
     if len(hosts) == 0:
         print('Error: No hosts defined. Please edit ' + hostnames_path)
         exit(1)
