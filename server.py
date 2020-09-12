@@ -10,15 +10,17 @@ port = 8888
 
 async def handle_ping(reader, writer):
     data = await reader.read(100)
-    client_hostname = data.decode()
+    data = data.split(',')
+    client_hostname = data[0]
+    client_local_ip = data[1]
     client_address = writer.get_extra_info("peername")
 
     if client_hostname in hosts:
         with open(clients_folder + client_hostname + ".txt", "w") as f:
-            f.write("%s: %s\n" %(client_hostname, client_address[0]))
+            f.write("%s: %s public, %s local\n" %(client_hostname, client_address[0], client_local_ip))
             f.write("Pinged at " + dt.datetime(2000, 1, 1).now().strftime("%m/%d/%Y %H:%M:%S") + "\n")
 
-        message = "Received: %s @ %s" %(client_hostname, client_address[0])
+        message = "Received: %s @ %s public, %s local" %(client_hostname, client_address[0], client_local_ip)
         writer.write(message.encode())
         await writer.drain()
 
